@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#111827" />
+  <title>Bulls & Cows</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <section id="welcome-screen" class="screen welcome-screen">
+      <div class="brand-mark" aria-hidden="true">🐂🐄</div>
+      <div class="eyebrow">THE NUMBER LOGIC GAME</div>
+      <h1>Bulls <span>&</span> Cows</h1>
+      <p class="subtitle">Crack the code. Trust your logic. Beat your best.</p>
+
+      <div class="rules-card">
+        <div class="rule">
+          <div class="rule-icon bull-icon">🐂</div>
+          <div><strong>Bulls</strong><p>Right digit, wrong position.</p></div>
+        </div>
+        <div class="rule">
+          <div class="rule-icon cow-icon">🐄</div>
+          <div><strong>Cows</strong><p>Right digit in the right position.</p></div>
+        </div>
+        <div class="rule">
+          <div class="rule-icon target-icon">🎯</div>
+          <div><strong>Your mission</strong><p>Guess the unique 4-digit code in as few attempts as possible.</p></div>
+        </div>
+      </div>
+      <button id="start-button" class="primary-button">Start game <span aria-hidden="true">→</span></button>
+      <p class="tiny-note">Four cows = you win</p>
+    </section>
+
+    <section id="game-screen" class="screen game-screen hidden">
+      <header class="game-header">
+        <button id="home-button" class="icon-button" aria-label="Back to welcome screen" title="Home">←</button>
+        <div>
+          <div class="eyebrow">NUMBER LOGIC GAME</div>
+          <h1>Bulls <span>&</span> Cows</h1>
+        </div>
+        <div class="best-score"><span class="best-label">PERSONAL BEST</span><strong id="best-score">—</strong><small id="best-unit">attempts</small></div>
+      </header>
+
+      <div class="game-layout">
+        <section class="play-panel panel">
+          <div class="panel-heading"><div><span class="step-label">YOUR TURN</span><h2>Crack the code</h2></div><div class="attempt-pill"><span id="attempt-count">0</span> attempts</div></div>
+          <p class="muted">Enter four different digits from 1 to 9. No repeats.</p>
+
+          <form id="guess-form" novalidate>
+            <label for="guess-input">Your guess</label>
+            <div class="guess-row">
+              <input id="guess-input" name="guess" type="text" inputmode="numeric" autocomplete="off" maxlength="4" placeholder="1234" aria-describedby="input-help" />
+              <button id="check-button" class="primary-button check-button" type="submit">Check <span>↗</span></button>
+            </div>
+            <div id="input-help" class="input-help">4 unique digits · digits 1–9</div>
+          </form>
+
+          <div id="result-message" class="result-message" role="status" aria-live="polite">Your clues will appear here.</div>
+
+          <div id="win-banner" class="win-banner hidden">
+            <div class="win-emoji">🏆</div>
+            <div><strong>Code cracked!</strong><p id="win-copy">You solved it.</p></div>
+          </div>
+
+          <div class="history-heading"><h3>Guess history</h3><span id="history-count">0 guesses</span></div>
+          <div id="history-list" class="history-list">
+            <div id="empty-history" class="empty-history"><span>⌁</span><p>No guesses yet. Your first move is waiting.</p></div>
+          </div>
+          <button id="new-game-button" class="secondary-button hidden">Play another round ↻</button>
+        </section>
+
+        <aside class="side-column">
+          <section class="panel status-panel">
+            <div class="side-title"><span class="side-icon">◎</span><h3>How to win</h3></div>
+            <p>Use each result to narrow down the secret code. Every guess gives you new information.</p>
+            <div class="score-legend"><div><span class="legend-dot bull-dot"></span><span><strong>Bulls</strong><small>Digit is present, position is wrong</small></span></div><div><span class="legend-dot cow-dot"></span><span><strong>Cows</strong><small>Digit and position are correct</small></span></div></div>
+          </section>
+          <section class="panel stats-panel">
+            <div class="side-title"><span class="side-icon">✦</span><h3>Round stats</h3></div>
+            <div class="stat-line"><span>Attempts this round</span><strong id="side-attempt-count">0</strong></div>
+            <div class="stat-line"><span>Best score</span><strong id="side-best-score">—</strong></div>
+            <div class="stat-line"><span>Digits in the code</span><strong>4 unique</strong></div>
+          </section>
+          <div class="tip-card"><span>💡</span><p><strong>Logic tip</strong><br />Change one or two digits at a time so you can learn from each clue.</p></div>
+        </aside>
+      </div>
+      <footer>Made for curious minds <span>·</span> Think sharp, guess smart.</footer>
+    </section>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
